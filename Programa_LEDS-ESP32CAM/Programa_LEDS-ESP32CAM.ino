@@ -37,6 +37,7 @@ void setup() {
   // Inicialización de la comunicación serie
   Serial.begin(115200);
   Serial.print("Programa iniciado");
+  Serial.println();
 
   // Terminales ESP32CAM en modo salida para los LEDs
   pinMode (LED1,OUTPUT);
@@ -61,30 +62,37 @@ void loop() {
   // Conteo cada 5 seg
   if (timeNow - timeLast5 > wait5){
   // Método para cambiar el estado del LED
-    toggleLED(LED1, datoLed1);
-    datoLed1 != datoLed1;
+    datoLed1 = toggleLED(LED1, datoLed1);
+    Serial.print(datoLed1);
+    Serial.println();
+    // datoLed1 = !datoLed1;
     timeLast5 = millis();
   } // Se cierra if conteo 5 seg
 
   // Conteo cada 3 seg
   if (timeNow - timeLast3 > wait3){
   // Método para cambiar el estado del LED
-    toggleLED(LED2, datoLed2);
-    datoLed2 != datoLed2;
+    datoLed2 = toggleLED(LED2, datoLed2);
+    Serial.print(datoLed2);
+    // Serial.println(datoLed2);
+    // datoLed2 = !datoLed2;
     timeLast3 = millis();
   } // Se cierra if conteo 3 seg
 
   // Conteo cada 1 seg
   if (timeNow - timeLast1 > wait1){
   // Método para cambiar el estado del LED
-    toggleLED(LED3, datoLed3);
-    datoLed3 != datoLed3;
+    datoLed3 = toggleLED(LED3, datoLed3);
+    Serial.print(datoLed3);
+    // Serial.println(datoLed3);
+    // datoLed3 = !datoLed3;
     timeLast1 = millis();
   } // Se cierra if conteo 1 seg
-}
+ }
 
 // Funciones del usuario
-  void toggleLED(int pinLed, bool estado){
+  bool toggleLED(int pinLed, bool estado){
     // Cuerpo de la función
     digitalWrite(pinLed, estado);
+    return(!estado);
   } // Se cierra la función
